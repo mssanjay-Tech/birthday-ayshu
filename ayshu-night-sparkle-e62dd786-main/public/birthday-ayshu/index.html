@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Happy Birthday, Ayshu ✨</title>
+<meta name="description" content="A tiny magical birthday universe made especially for Ayshu (Ayswarya)." />
+<meta name="theme-color" content="#0b0a1a" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Dancing+Script:wght@500;700&family=Quicksand:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/animations.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+<canvas id="sky-canvas" aria-hidden="true"></canvas>
+<div class="sky-bg" aria-hidden="true">
+  <div class="moon"></div>
+  <div class="cloud cloud-a"></div>
+  <div class="cloud cloud-b"></div>
+  <div class="city-glow"></div>
+</div>
+
+<button id="music-btn" class="music-btn" type="button" aria-label="Toggle music" hidden>♪</button>
+<button id="change-person-btn" class="change-person" type="button" hidden>↺ Change person</button>
+
+<!-- STEP SCREENS (select + welcome + countdown) -->
+<section id="screen-select" class="step-screen is-active">
+  <div class="select-inner">
+    <h1 class="script-lg glow-pink" id="select-title">Who is this surprise for? 💕</h1>
+    <div class="person-cards" id="person-cards"></div>
+  </div>
+  <img class="bear bear-welcome float-soft" src="assets/images/bear-heart.png" alt="A cute teddy bear holding a glowing heart" width="560" height="560" />
+</section>
+
+<section id="screen-welcome" class="step-screen">
+  <div class="welcome-inner">
+    <h1 class="script-xl glow-pink" id="welcome-text">Hey Ayshu... 👋</h1>
+    <p class="welcome-sub" id="welcome-sub">I made something special for you.</p>
+    <div class="tiny-heart">♥</div>
+  </div>
+  <img class="bear bear-welcome float-soft" src="assets/images/bear-sit.png" alt="A cute teddy bear looking at the night sky" width="560" height="560" />
+  <div class="welcome-cta">
+    <button id="start-btn" class="btn-glow" type="button">Start the Surprise ✨</button>
+  </div>
+</section>
+
+<section id="screen-countdown" class="step-screen">
+  <div class="count-wrap">
+    <div id="count-number" class="count-number">3</div>
+  </div>
+  <img class="bear bear-count float-soft" src="assets/images/bear-star.png" alt="A teddy bear holding a glowing star" width="560" height="560" loading="lazy" />
+  <div class="count-dots" id="count-dots"><span class="on"></span><span></span><span></span></div>
+</section>
+
+<!-- STORY (scrollable) -->
+<main id="story" class="story" hidden>
+
+  <section class="screen screen-reveal reveal-group" id="s3">
+    <div class="reveal-inner">
+      <h2 class="serif-title r-1">✨ HAPPY<br />BIRTHDAY ✨</h2>
+      <p class="script-xl glow-pink name-script r-2" id="hero-name">Ayswarya</p>
+      <div class="tiny-heart r-3">♥</div>
+      <p class="soft-line r-4" id="hero-sub">Today is your day. ❤️</p>
+    </div>
+    <img class="bear bear-reveal float-soft" src="assets/images/bear-back.png" alt="Teddy bear watching the glowing city" width="560" height="560" loading="lazy" />
+    <div class="scroll-hint" aria-hidden="true">⌄</div>
+  </section>
+
+  <section class="screen screen-letter" id="s4">
+    <div class="fairy-lights" aria-hidden="true"></div>
+    <article class="letter">
+      <h3 class="letter-title">Hey Ayshu...</h3>
+      <p class="letter-body"><span id="typed"></span><span class="caret" id="caret"></span></p>
+      <img class="bear bear-letter" src="assets/images/bear-sit.png" alt="Teddy bear sitting by the letter" width="560" height="560" loading="lazy" />
+    </article>
+    <div class="hearts-layer" id="hearts-letter" aria-hidden="true"></div>
+  </section>
+
+  <section class="screen screen-gallery" id="s5">
+    <h3 class="script-lg glow-pink gallery-title">Memories <span class="tiny-inline">♥</span></h3>
+    <div class="gallery" id="gallery" role="list" aria-label="Photo memories"></div>
+    <div class="gallery-meta">
+      <span class="counter"><b id="g-index">01</b> <i>/ 07</i></span>
+      <span class="progress"><i id="g-progress"></i></span>
+    </div>
+    <img class="bear bear-gallery" src="assets/images/bear-camera.png" alt="Teddy bear holding a camera" width="560" height="560" loading="lazy" />
+    <p class="swipe-hint">Swipe to see more memories ✨</p>
+  </section>
+
+  <section class="screen screen-gift" id="s6">
+    <p class="soft-line" id="gift-line-1">There's one more thing...</p>
+    <p class="script-lg glow-pink" id="gift-line-2">Just for you, Ayshu. 🎁</p>
+    <div class="gift-stage">
+      <div class="gift" id="gift">
+        <div class="gift-burst" aria-hidden="true"></div>
+        <div class="gift-lid"><span class="bow"></span></div>
+        <div class="gift-box"><span class="gift-ribbon"></span></div>
+      </div>
+      <img class="bear bear-gift" src="assets/images/bear-heart.png" alt="Teddy bear sitting beside the gift" width="560" height="560" loading="lazy" />
+      <div class="confetti-layer" id="confetti" aria-hidden="true"></div>
+    </div>
+    <div class="whistle-stage" id="whistle-stage" hidden>
+      <p class="soft-line" id="whistle-prompt">Ready, Ayshu? 😏</p>
+      <div class="whistle-wrap" id="whistle-wrap">
+        <img class="whistle-img" id="whistle-img" src="assets/images/whistle.png" alt="A playful pink whistle" width="768" height="768" loading="lazy" />
+        <span class="whistle-fallback" aria-hidden="true">📣</span>
+        <div class="whistle-sparks" id="whistle-sparks" aria-hidden="true"></div>
+      </div>
+      <button id="whistle-btn" class="btn-glow" type="button" aria-label="Whistle to start the celebration">📣 WHISTLE!</button>
+      <p class="whistle-title" id="whistle-title"></p>
+    </div>
+    <p class="gift-message" id="gift-message"></p>
+    <button id="gift-btn" class="btn-glow" type="button">Open Your Surprise 🎁</button>
+  </section>
+
+  <section class="screen screen-fireworks" id="s7">
+    <canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+    <div class="fw-copy">
+      <h2 class="serif-title fw-title">HAPPY<br />BIRTHDAY</h2>
+      <h2 class="serif-title fw-name" id="fw-name">AYSWARYA</h2>
+    </div>
+    <img class="bear bear-fw float-soft" src="assets/images/bear-back.png" alt="Teddy bear watching the fireworks" width="560" height="560" loading="lazy" />
+    <div class="fog" aria-hidden="true"></div>
+  </section>
+
+  <section class="screen screen-final" id="s8">
+    <div class="petals" id="petals" aria-hidden="true"></div>
+    <div class="final-inner">
+      <h2 class="script-xl glow-pink final-title">Happy Birthday,<br />Ayshu ❤️</h2>
+      <p class="final-body" id="final-body"></p>
+      <div class="heart-outline" aria-hidden="true">♡</div>
+      <p class="signature" id="signature">— From someone who cares</p>
+    </div>
+    <img class="bear bear-final float-soft" src="assets/images/bear-heart.png" alt="Teddy bear holding a glowing heart" width="560" height="560" loading="lazy" />
+    <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+  </section>
+
+</main>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close photo">×</button>
+  <figure><img id="lightbox-img" alt="Memory photo" /><figcaption id="lightbox-cap"></figcaption></figure>
+</div>
+
+<audio id="bg-music" loop preload="none"></audio>
+
+
+<script src="js/config.js"></script>
+<script src="js/stars.js"></script>
+<script src="js/countdown.js"></script>
+<script src="js/typewriter.js"></script>
+<script src="js/gallery.js"></script>
+<script src="js/gift.js"></script>
+<script src="js/fireworks.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

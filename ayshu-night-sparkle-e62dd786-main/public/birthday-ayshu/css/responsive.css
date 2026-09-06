@@ -1,0 +1,111 @@
+/* ===== Ayshu — responsive (mobile first) ===== */
+
+/* very small phones: 360x640 / short viewports */
+@media (max-height: 700px){
+  :root{--pad:16px}
+  .bear-welcome{width:min(42vw,168px)}
+  .bear-reveal{width:min(40vw,160px)}
+  .bear-count{width:min(34vw,132px)}
+  .count-number{font-size:clamp(5.5rem,32vw,8rem)}
+  .letter{padding:20px 18px 62px}
+  .letter-body{line-height:1.6}
+  .gift-stage{height:min(38vh,240px)}
+}
+
+@media (max-width: 360px){
+  .script-xl{font-size:2rem}
+  .polaroid{width:82vw}
+  .btn-glow{font-size:.96rem}
+}
+
+/* larger phones / small tablets */
+@media (min-width: 480px){
+  .welcome-inner,.reveal-inner,.final-inner{max-width:26ch}
+  .gallery{padding-inline:calc(50vw - 150px)}
+}
+
+/* desktop: keep the phone-like column centred */
+@media (min-width: 860px){
+  .step-screen,.screen{padding-inline:0}
+  .welcome-inner,.welcome-cta,.reveal-inner,.final-inner,.fw-copy,.letter,.gift-stage{
+    margin-inline:auto;
+  }
+  .bear-welcome{width:210px}
+  .bear-reveal,.bear-fw{width:200px}
+  .bear-final{width:170px}
+  .gallery{width:min(100vw,900px);margin-inline:auto;padding-inline:calc(50% - 170px)}
+  .polaroid{width:320px}
+  .moon{right:6vw;max-width:180px;max-height:180px}
+}
+
+@media (orientation: landscape) and (max-height: 520px){
+  .step-screen.is-active{grid-template-rows:auto auto auto}
+  .bear-welcome,.bear-count{width:110px}
+  .count-number{font-size:5rem}
+  .screen{min-height:auto;padding-block:28px}
+  .story{scroll-snap-type:none}
+}
+
+/* ===== Whistle screen mobile layout ===== */
+@media (max-width: 859px){
+  .whistle-stage:not([hidden]){
+    position:absolute;
+    inset:0;
+    z-index:10;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:max(20px, env(safe-area-inset-top)) var(--pad) max(20px, env(safe-area-inset-bottom));
+    gap:clamp(10px, 2.2vh, 18px);
+    text-align:center;
+    background:radial-gradient(120% 120% at 50% 40%, rgba(42,23,69,1) 0%, rgba(10,10,28,1) 70%);
+  }
+  .whistle-stage:not([hidden]) .whistle-wrap{
+    width:auto;
+    max-width:min(55vw, 220px);
+    aspect-ratio:1;
+  }
+  .whistle-stage:not([hidden]) .whistle-img{
+    width:100%;
+    height:auto;
+  }
+  .whistle-stage:not([hidden]) #whistle-prompt{
+    font-size:clamp(1.05rem, 4.6vw, 1.25rem);
+    max-width:min(90vw, 420px);
+  }
+  .whistle-stage:not([hidden]) #whistle-btn{
+    width:min(80%, 300px);
+    min-height:48px;
+    font-size:clamp(1.05rem, 5vw, 1.25rem);
+    padding:12px 24px;
+  }
+  .whistle-stage:not([hidden]) .whistle-title{
+    max-width:min(90vw, 420px);
+  }
+  .whistle-stage:not([hidden]) ~ .gift-message{
+    position:absolute;
+    bottom:max(20px, env(safe-area-inset-bottom));
+    left:0;
+    right:0;
+    z-index:11;
+    padding:0 var(--pad);
+    font-size:clamp(1.05rem, 4.8vw, 1.3rem);
+    text-align:center;
+    min-height:0;
+  }
+}
+
+@media (max-width: 360px){
+  .whistle-stage:not([hidden]) .whistle-wrap{
+    max-width:min(48vw, 180px);
+  }
+  .whistle-stage:not([hidden]) #whistle-btn{
+    font-size:1rem;
+  }
+  .whistle-stage:not([hidden]) .whistle-title,
+  .whistle-stage:not([hidden]) #whistle-prompt,
+  .whistle-stage:not([hidden]) ~ .gift-message{
+    font-size:1rem;
+  }
+}
